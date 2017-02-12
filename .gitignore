@@ -1,0 +1,16 @@
+/bin/
+/build/
+/.settings/
+/dist/
+
+.classpath
+.classpath~
+.project~
+BSD_License_for_WPILib_code.txt
+BSD_License_for_WPILib_code.txt~
+sysProps.xml
+
+
+*.class
+*.jar
+*.java~
