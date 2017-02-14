@@ -8,9 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class TurnTableLoad extends Command {
+public class TurnTableCW extends Command {
 
-    public TurnTableLoad() {
+    public TurnTableCW() {
         // Use requires() here to declare subsystem dependencies
     	requires(Robot.turnTable);
     }

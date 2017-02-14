@@ -6,6 +6,8 @@ import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.Spark;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 /**
@@ -31,16 +33,21 @@ public class RobotMap {
 	public static Victor right6WheelTank;
 	public static RobotDrive westCoast;
 	
-	// mechanisms
+	// winch
+	public static Spark bigWinch;
+	
+	//intake
 	public static Victor collectorRoller;
-	public static Victor bigWinch;
+	
+	// turntable
 	public static Victor turnTable;
 	
 	// pneumatics
+	public static Compressor compressor;
 	public static DoubleSolenoid gearShift;
 	
 	// electronics
-	 public static PowerDistributionPanel daPdP;
+	 public static PowerDistributionPanel powerDP;
 	 
 	 
 	
@@ -52,7 +59,7 @@ public class RobotMap {
 	      } catch (RuntimeException ex ) {
 	          DriverStation.reportError("Error instantiating navX-Micro:  " + ex.getMessage(), true);	          
 	      }
-		daPdP = new PowerDistributionPanel(0);
+		powerDP = new PowerDistributionPanel(0);
 		// shooter
 		shooterMotor1 = new CANTalon(shooterRight);
         shooterMotor2 = new CANTalon(shooterLeft);
@@ -67,12 +74,14 @@ public class RobotMap {
         westCoast = new RobotDrive(left6WheelTank, right6WheelTank);
         
         //pneumatics
+        compressor = new Compressor(3);
+        compressor.setClosedLoopControl(true);
         gearShift = new DoubleSolenoid(0,1);
         
         // mechanisms
         collectorRoller = new Victor(2);
-        bigWinch = new Victor(3);
-       turnTable = new Victor(4);
+        bigWinch = new Spark(3);
+        turnTable = new Victor(4);
         
 	}
 }
