@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.GenericHID.Hand;
 public class WestCoastDrive extends Subsystem {
 
     public final RobotDrive westCoast = RobotMap.westCoast;
-    public final DoubleSolenoid gearshift = RobotMap.gearShift;
+    public final DoubleSolenoid gearshift = RobotMap.gearShiftSol;
   
     public void initDefaultCommand() {
         setDefaultCommand(new DriveWithJoysticks());

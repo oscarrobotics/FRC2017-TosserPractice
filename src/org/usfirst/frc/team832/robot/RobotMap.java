@@ -44,7 +44,8 @@ public class RobotMap {
 	
 	// pneumatics
 	public static Compressor compressor;
-	public static DoubleSolenoid gearShift;
+	public static DoubleSolenoid gearShiftSol;
+	public static DoubleSolenoid winchTiltSol;
 	
 	// electronics
 	 public static PowerDistributionPanel powerDP;
@@ -76,12 +77,14 @@ public class RobotMap {
         //pneumatics
         compressor = new Compressor(3);
         compressor.setClosedLoopControl(true);
-        gearShift = new DoubleSolenoid(0,1);
+        gearShiftSol = new DoubleSolenoid(0,1);
+        winchTiltSol = new DoubleSolenoid(6,7);
+        
         
         // mechanisms
         collectorRoller = new Victor(2);
-        bigWinch = new Spark(3);
-        turnTable = new Victor(4);
+        bigWinch = new Spark(4);
+        turnTable = new Victor(3);
         
 	}
 }

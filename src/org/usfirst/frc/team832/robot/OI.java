@@ -21,33 +21,37 @@ public class OI {
 	public final JoystickButton lowGear;
 	// winch
 	public final JoystickButton winchPull;
+	public final JoystickButton winchTilt;
+	
 	// intake
-	public final JoystickButton collectIn;
-    public final JoystickButton spitOut;
+	public final JoystickButton rollerIn;
+    public final JoystickButton rollerOut;
 	// turntable
     public final JoystickButton tableCW;
     
 	public OI() {
 		//flywheel
-		flywheelSpinUp = new JoystickButton(operatorStick, 2);
+		flywheelSpinUp = new JoystickButton(operatorStick, 1);
 		flywheelSpinUp.whileHeld(new RunTheShooter());
 		//drivetrain
 		highGear = new JoystickButton(driverPad, 6);
-		highGear.whenPressed(new UpShift());
+		highGear.whenPressed(new ShiftHigh());
 		lowGear = new JoystickButton(driverPad, 5);
-		lowGear.whenPressed(new DownShift());
+		lowGear.whenPressed(new ShiftLow());
 		// winch
 		winchPull = new JoystickButton(driverPad, 1);
 		winchPull.whileHeld(new WinchPull());
 		//collector
-		spitOut = new JoystickButton(operatorStick, 4);
-		spitOut.whileHeld( new CollectorEject());
-		collectIn = new JoystickButton(operatorStick, 5);
-		collectIn.whileHeld(new CollectorIntake());
+		rollerOut = new JoystickButton(operatorStick, 4);
+		rollerOut.whileHeld( new CollectorEject());
+		rollerIn = new JoystickButton(operatorStick, 5);
+		rollerIn.whileHeld(new CollectorIntake());
 		//turntable
-		tableCW = new JoystickButton(operatorStick, 5);
-		tableCW.whileHeld( new TurnTableCW());
-	
+		tableCW = new JoystickButton(operatorStick, 2);
+		tableCW.whileHeld(new TurnTableCW());
+		
+		winchTilt = new JoystickButton(operatorStick, 6);
+		winchTilt.whileHeld(new WinchTilt());
 		
 		
 		
