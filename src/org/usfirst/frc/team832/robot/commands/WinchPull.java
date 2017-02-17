@@ -21,7 +21,7 @@ public class WinchPull extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.bigWinch.set(-.10);
+    RobotMap.bigWinch.set(1.00);
     	
     }
 

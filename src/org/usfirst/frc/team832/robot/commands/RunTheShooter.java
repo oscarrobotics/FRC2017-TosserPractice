@@ -31,7 +31,7 @@ public class RunTheShooter extends Command {
 		double throttle = Robot.oi.operatorStick.getRawAxis(2);
 		throttle += 1;
 		throttle /= 2;
-		throttle *= 4500;
+		throttle *= 3500; //CHANGED FROM 4500
 		SmartDashboard.putNumber("Throttle", throttle);
 		RobotMap.shooterMotor1.set(throttle);
 	}

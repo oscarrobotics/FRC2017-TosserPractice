@@ -9,7 +9,7 @@ public class Collector extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	public double collectorPower = 0.20;
+	public double collectorPower = 0.75;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.

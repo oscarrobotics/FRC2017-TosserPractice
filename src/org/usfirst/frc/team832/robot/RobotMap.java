@@ -75,16 +75,16 @@ public class RobotMap {
         westCoast = new RobotDrive(left6WheelTank, right6WheelTank);
         
         //pneumatics
-        compressor = new Compressor(3);
+        compressor = new Compressor(7);
         compressor.setClosedLoopControl(true);
         gearShiftSol = new DoubleSolenoid(0,1);
         winchTiltSol = new DoubleSolenoid(6,7);
         
         
         // mechanisms
-        collectorRoller = new Victor(2);
+        collectorRoller = new Victor(3);
         bigWinch = new Spark(4);
-        turnTable = new Victor(3);
+        turnTable = new Victor(2);
         
 	}
 }
