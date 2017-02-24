@@ -33,9 +33,14 @@ public class Robot extends IterativeRobot {
 	public static Winch bigWinch;
 	public static Turntable turnTable;
 	public static OI oi;
+<<<<<<< HEAD
 	
 	public boolean isPracticeBot = true; // YOU MUST CHANGE THIS BETWEEN ROBOTS
 	
+=======
+
+	public boolean isPracticeBot = true; // YOU MUST CHANGE THIS BETWEEN ROBOTS
+>>>>>>> e271606286d923c78cc485baaec94d347fbed51b
 
 	public static AHRS navx = RobotMap.navx;
 	Command autonomousCommand;
@@ -47,11 +52,17 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+<<<<<<< HEAD
 		
 		
 		RobotMap.init();
 		
 		
+=======
+
+		RobotMap.init();
+
+>>>>>>> e271606286d923c78cc485baaec94d347fbed51b
 		shooter = new Shooter();
 		turnTable = new Turntable();
 		westCoastDrive = new WestCoastDrive();
@@ -63,6 +74,7 @@ public class Robot extends IterativeRobot {
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", chooser);
 	}
+<<<<<<< HEAD
 	
 	
 	public void sendData() {
@@ -116,6 +128,95 @@ public class Robot extends IterativeRobot {
          SmartDashboard.putString(   "YawAxisDirection",     yaw_axis.up ? "Up" : "Down" );
          SmartDashboard.putNumber(   "YawAxis",              yaw_axis.board_axis.getValue() );
 		}catch (NullPointerException e) {
+=======
+
+	/**
+	 * 
+	 */
+	public void sendData() {
+		
+		try {
+			
+//			SmartDashboard.putBoolean("IMU_Connected", navx.isConnected());
+//			SmartDashboard.putBoolean("IMU_IsCalibrating", navx.isCalibrating());
+//			SmartDashboard.putNumber("IMU_Yaw", navx.getYaw());
+//			SmartDashboard.putNumber("IMU_Pitch", navx.getPitch());
+//			SmartDashboard.putNumber("IMU_Roll", navx.getRoll());
+//
+//			/* Display tilt-corrected, Magnetometer-based heading (requires */
+//			/* magnetometer calibration to be useful) */
+//
+//			SmartDashboard.putNumber("IMU_CompassHeading", navx.getCompassHeading());
+//
+//			/*
+//			 * Display 9-axis Heading (requires magnetometer calibration to be
+//			 * useful)
+//			 */
+//			SmartDashboard.putNumber("IMU_FusedHeading", navx.getFusedHeading());
+//
+//			/*
+//			 * These functions are compatible w/the WPI Gyro Class, providing a
+//			 * simple
+//			 */
+//			/* path for upgrading from the Kit-of-Parts gyro to the navx-MXP */
+//
+//			SmartDashboard.putNumber("IMU_TotalYaw", navx.getAngle());
+//			SmartDashboard.putNumber("IMU_YawRateDPS", navx.getRate());
+//
+//			/*
+//			 * Display Processed Acceleration Data (Linear Acceleration, Motion
+//			 * Detect)
+//			 */
+//
+//			SmartDashboard.putNumber("IMU_Accel_X", navx.getWorldLinearAccelX());
+//			SmartDashboard.putNumber("IMU_Accel_Y", navx.getWorldLinearAccelY());
+//			SmartDashboard.putBoolean("IMU_IsMoving", navx.isMoving());
+//			SmartDashboard.putBoolean("IMU_IsRotating", navx.isRotating());
+//
+//			/*
+//			 * Display estimates of velocity/displacement. Note that these
+//			 * values are
+//			 */
+//			/*
+//			 * not expected to be accurate enough for estimating robot position
+//			 * on a
+//			 */
+//			/*
+//			 * FIRST FRC Robotics Field, due to accelerometer noise and the
+//			 * compounding
+//			 */
+//			/*
+//			 * of these errors due to single (velocity) integration and
+//			 * especially
+//			 */
+//			/* double (displacement) integration. */
+//
+//			SmartDashboard.putNumber("Velocity_X", navx.getVelocityX());
+//			SmartDashboard.putNumber("Velocity_Y", navx.getVelocityY());
+//
+//			/* Display Raw Gyro/Accelerometer/Magnetometer Values */
+//			/*
+//			 * NOTE: These values are not normally necessary, but are made
+//			 * available
+//			 */
+//			/*
+//			 * for advanced users. Before using this data, please consider
+//			 * whether
+//			 */
+//			/* the processed data (see above) will suit your needs. */
+//
+//			/* Omnimount Yaw Axis Information */
+//			/*
+//			 * For more info, see
+//			 * http://navx-mxp.kauailabs.com/installation/omnimount
+//			 */
+//			AHRS.BoardYawAxis yaw_axis = navx.getBoardYawAxis();
+//			SmartDashboard.putString("YawAxisDirection", yaw_axis.up ? "Up" : "Down");
+//			SmartDashboard.putNumber("YawAxis", yaw_axis.board_axis.getValue());
+			SmartDashboard.putNumber("CLError", RobotMap.shooterMotor1.getClosedLoopError());
+			SmartDashboard.putNumber("RPM Actual", RobotMap.shooterMotor1.getSpeed());
+		} catch (NullPointerException e) {
+>>>>>>> e271606286d923c78cc485baaec94d347fbed51b
 			DriverStation.reportError(e.getMessage(), true);
 			System.out.println(e.getMessage());
 		}
@@ -187,7 +288,11 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+<<<<<<< HEAD
 	    sendData();
+=======
+		sendData();
+>>>>>>> e271606286d923c78cc485baaec94d347fbed51b
 	}
 
 	/**
@@ -197,10 +302,16 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 		LiveWindow.run();
 	}
+<<<<<<< HEAD
 	
 	
 	
 	//This is the end of all methods
 	
 	
+=======
+
+	// This is the end of all methods
+
+>>>>>>> e271606286d923c78cc485baaec94d347fbed51b
 }
