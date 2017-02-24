@@ -12,6 +12,8 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
+
 import org.usfirst.frc.team832.robot.commands.*;
 import org.usfirst.frc.team832.robot.subsystems.*;
 
@@ -32,6 +34,8 @@ public class Robot extends IterativeRobot {
 	public static Turntable turnTable;
 	public static OI oi;
 	
+	public boolean isPracticeBot = true; // YOU MUST CHANGE THIS BETWEEN ROBOTS
+	
 
 	public static AHRS navx = RobotMap.navx;
 	Command autonomousCommand;
@@ -43,7 +47,10 @@ public class Robot extends IterativeRobot {
 	 */
 	@Override
 	public void robotInit() {
+		
+		
 		RobotMap.init();
+		
 		
 		shooter = new Shooter();
 		turnTable = new Turntable();
@@ -59,6 +66,8 @@ public class Robot extends IterativeRobot {
 	
 	
 	public void sendData() {
+		
+		try {
 		 SmartDashboard.putBoolean(  "IMU_Connected",        navx.isConnected());
          SmartDashboard.putBoolean(  "IMU_IsCalibrating",    navx.isCalibrating());
          SmartDashboard.putNumber(   "IMU_Yaw",              navx.getYaw());
@@ -106,6 +115,10 @@ public class Robot extends IterativeRobot {
          AHRS.BoardYawAxis yaw_axis = navx.getBoardYawAxis();
          SmartDashboard.putString(   "YawAxisDirection",     yaw_axis.up ? "Up" : "Down" );
          SmartDashboard.putNumber(   "YawAxis",              yaw_axis.board_axis.getValue() );
+		}catch (NullPointerException e) {
+			DriverStation.reportError(e.getMessage(), true);
+			System.out.println(e.getMessage());
+		}
 	}
 
 	/**
@@ -174,7 +187,7 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-	    
+	    sendData();
 	}
 
 	/**

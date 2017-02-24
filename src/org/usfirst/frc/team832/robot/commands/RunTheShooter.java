@@ -27,13 +27,15 @@ public class RunTheShooter extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
+		/*
 		RobotMap.shooterMotor1.changeControlMode(CANTalon.TalonControlMode.Speed);
 		double throttle = Robot.oi.operatorStick.getRawAxis(2);
 		throttle += 1;
 		throttle /= 2;
 		throttle *= 3500; //CHANGED FROM 4500
 		SmartDashboard.putNumber("Throttle", throttle);
-		RobotMap.shooterMotor1.set(throttle);
+*/		
+		RobotMap.shooterMotor1.set(2000);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
