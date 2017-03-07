@@ -22,7 +22,7 @@ public class WinchTilt extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	RobotMap.winchTiltSol.set(Value.kForward);
+    	//RobotMap.winchTiltSol.set(Value.kForward);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -32,7 +32,7 @@ public class WinchTilt extends Command {
 
     // Called once after isFinished returns true
     protected void end() {
-    	RobotMap.winchTiltSol.set(Value.kReverse);
+//    	RobotMap.winchTiltSol.set(Value.kReverse);
     }
 
     // Called when another command which requires one or more of the same

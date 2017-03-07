@@ -1,12 +1,6 @@
 package org.usfirst.frc.team832.robot.commands;
 
 import org.usfirst.frc.team832.robot.Robot;
-import org.usfirst.frc.team832.robot.subsystems.*;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
-import edu.wpi.first.wpilibj.GenericHID.Hand;
-import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team832.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -17,7 +11,7 @@ public class ShiftLow extends Command {
 
     public ShiftLow() {
         // Use requires() here to declare subsystem dependencies
-       requires(Robot.westCoastDrive);
+        requires(Robot.pneumatics);
     }
 
     // Called just before this Command runs the first time
@@ -26,8 +20,7 @@ public class ShiftLow extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-     RobotMap.gearShiftSol.set(Value.kReverse);
-    
+    	Robot.pneumatics.shiftToLow();
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -42,5 +35,6 @@ public class ShiftLow extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+    	end();
     }
 }

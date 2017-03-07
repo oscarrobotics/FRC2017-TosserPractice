@@ -34,9 +34,12 @@ public class Robot extends IterativeRobot {
 	public static Turntable turnTable;
 	public static OI oi;
 
-	public boolean isPracticeBot = true; // YOU MUST CHANGE THIS BETWEEN ROBOTS
+	//public static double shooterSetRPM = RobotMap.shooterMotor1.getSetpoint(); // what the shooter should be at
+	//double shooterActualRPM = RobotMap.shooterMotor1.getSpeed(); // what it is at
+	//double shooterCurrentDraw = RobotMap.shooterMotor1.getOutputCurrent() + RobotMap.shooterMotor2.getOutputCurrent();
+	
 
-	public static AHRS navx = RobotMap.navx;
+	//public static AHRS navx = RobotMap.navx;
 	Command autonomousCommand;
 	SendableChooser<Command> chooser = new SendableChooser<>();
 
@@ -47,8 +50,13 @@ public class Robot extends IterativeRobot {
 	@Override
 	public void robotInit() {
 
+		try {
 		RobotMap.init();
-
+		}
+		catch (Exception ex) {
+			String err = ex.getMessage().toString();
+			DriverStation.reportError(err, true);
+		}
 		shooter = new Shooter();
 		turnTable = new Turntable();
 		westCoastDrive = new WestCoastDrive();
@@ -64,6 +72,13 @@ public class Robot extends IterativeRobot {
 	/**
 	 * 
 	 */
+	
+	public void stallPrevention() {
+		if (true) {
+			
+		}
+	}
+	
 	public void sendData() {
 		
 		try {
@@ -144,8 +159,8 @@ public class Robot extends IterativeRobot {
 //			AHRS.BoardYawAxis yaw_axis = navx.getBoardYawAxis();
 //			SmartDashboard.putString("YawAxisDirection", yaw_axis.up ? "Up" : "Down");
 //			SmartDashboard.putNumber("YawAxis", yaw_axis.board_axis.getValue());
-			SmartDashboard.putNumber("CLError", RobotMap.shooterMotor1.getClosedLoopError());
-			SmartDashboard.putNumber("RPM Actual", RobotMap.shooterMotor1.getSpeed());
+			//SmartDashboard.putNumber("CLError", RobotMap.shooterMotor1.getClosedLoopError());
+			//SmartDashboard.putNumber("RPM Actual", RobotMap.shooterMotor1.getSpeed());
 		} catch (NullPointerException e) {
 			DriverStation.reportError(e.getMessage(), true);
 			System.out.println(e.getMessage());

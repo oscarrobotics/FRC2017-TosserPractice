@@ -9,6 +9,9 @@ import org.usfirst.frc.team832.robot.*;
  */
 public class DriveWithJoysticks extends Command {
 
+	double leftStick = Robot.oi.driverPad.getRawAxis(1);
+	double rightStick = Robot.oi.driverPad.getRawAxis(5);
+	
     public DriveWithJoysticks() {
         // Use requires() here to declare subsystem dependencies
         requires(Robot.westCoastDrive);
