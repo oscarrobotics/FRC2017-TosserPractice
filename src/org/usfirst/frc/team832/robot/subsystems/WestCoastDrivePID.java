@@ -19,19 +19,14 @@ public class WestCoastDrivePID extends PIDSubsystem {
 	private static final double kI = 0;
 	private static final double kD = 0;
 	public double pidOutputVal;
-    // Initialize your subsystem here
+	
     public WestCoastDrivePID() {
     	super("AutoDrive", kP, kI, kD);
     	setAbsoluteTolerance(0.5);
-    	setInputRange(0, 360);
-    	setOutputRange(0.4, 0.8);
-    	getPIDController().setContinuous(false);
-    	//setOutputRange(-.8, 0.8);
+    	setInputRange(-180, 180); // navx.pidGet() outputs the yaw with a range of -180deg to 180deg
+    	setOutputRange(0.4, 0.8); // THIS PROBABLY WON'T WORK NOW, 
+    	getPIDController().setContinuous(true); // false for no wrap-around
     	enable();
-    	
-        // Use these to get going:
-        // setSetpoint() -  Sets where the PID controller should move the system
-        //                  to
     }
 
     public void initDefaultCommand() {
@@ -43,8 +38,6 @@ public class WestCoastDrivePID extends PIDSubsystem {
         // Return your input value for the PID loop
         // e.g. a sensor, like a potentiometer:
         // yourPot.getAverageVoltage() / kYourMaxVoltage;
-    	
-    	0
     	return navx.pidGet();
         
     }
