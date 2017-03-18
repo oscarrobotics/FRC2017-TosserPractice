@@ -3,15 +3,15 @@ package org.usfirst.frc.team832.robot;
 import com.ctre.*;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.I2C;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -21,10 +21,13 @@ import edu.wpi.first.wpilibj.PowerDistributionPanel;
  */
 public class RobotMap {
 
-	//public static AHRS navx;
+	public static AHRS navx;
 	//public static SerialPort.Port navXSerialPort = SerialPort.Port.kUSB;
 
 	//public static boolean isPracticeBot = true;
+	
+	public static Encoder leftEnc;
+	public static Encoder rightEnc;
 
 	// shooter
 	public static int shooterMotor1ID = 1;
@@ -70,13 +73,14 @@ public class RobotMap {
 	public static void init() {
 
 		// inits navX IMU
-		/*
+		
 		try {
-			navx = new AHRS(navXSerialPort);
+			navx = new AHRS(I2C.Port.kOnboard);
 		} catch (RuntimeException ex) {
 			DriverStation.reportError("Error instantiating navX-Micro:  " + ex.getMessage(), true);
 		}
-		*/
+		
+		//navx.reset();
 		
 		// electronics
 		powerDP = new PowerDistributionPanel(pdpID);
@@ -94,6 +98,11 @@ public class RobotMap {
 		shooterMotor1.clearStickyFaults();
 		shooterMotor2.clearStickyFaults();
 
+		leftEnc = new Encoder(0, 1, false, Encoder.EncodingType.k4X);
+		rightEnc = new Encoder(2, 3, true, Encoder.EncodingType.k4X);
+		RobotMap.leftEnc.reset();
+		RobotMap.rightEnc.reset();
+		
 		// drivetrain
 		left1 = new Victor(leftDrivePWMPort);
 		right1 = new Victor(rightDrivePWMPort);
@@ -102,7 +111,7 @@ public class RobotMap {
 		// pneumatics
 		
 		compressor = new Compressor(pcmID);
-		compressor.setClosedLoopControl(true);
+		compressor.setClosedLoopControl(false);
 		compressor.clearAllPCMStickyFaults();
 		gearShiftSol = new DoubleSolenoid(pcmID, gearShiftSolLow, gearShiftSolHigh);
 		winchTiltSol = new DoubleSolenoid(pcmID, 6, 7); // not on practice bot, useless

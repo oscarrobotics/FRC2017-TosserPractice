@@ -13,25 +13,35 @@ public class Pneumatics extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	
 	public static DoubleSolenoid gearShift = RobotMap.gearShiftSol;
-	//public static DoubleSolenoid winchTilt = RobotMap.winchTiltSol;
-	//public static Solenoid ballDoor = RobotMap.ballDoorSol;
+	//public static Solenoid winchTilt = RobotMap.winchTiltSol;
+	public static Solenoid ballDoor = RobotMap.ballDoorSol;
 	public static boolean lowGear;
 	
 	public void shiftToLow() {
+		//gearShift.set(Value.kOff);
 		gearShift.set(Value.kForward);
 		lowGear = true;
 	}
 	public void shiftToHigh() {
+		//gearShift.set(Value.kOff);
 		gearShift.set(Value.kReverse);
 		lowGear = false;
 	}
 	
+	public void openBallDoor() {
+		ballDoor.set(true);
+	}
+	
+	public void closeBallDoor() {
+		ballDoor.set(false);
+	}
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
    
 }
+
 

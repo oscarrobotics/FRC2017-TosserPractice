@@ -3,7 +3,7 @@ package org.usfirst.frc.team832.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
-import org.usfirst.frc.team832.robot.commands.*;
+import org.usfirst.frc.team832.robot.commands.teleop.*;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -19,6 +19,9 @@ public class OI {
 	// gear shifter
 	public final JoystickButton highGear;
 	public final JoystickButton lowGear;
+	
+	// gear holder
+	public final JoystickButton gearHolderOut;
 	// winch
 	public final JoystickButton winchPull;
 	public final JoystickButton winchTilt;
@@ -39,17 +42,19 @@ public class OI {
 		flywheelSpinUp = new JoystickButton(operatorStick, 1);
 		flywheelSpinUp.whileHeld(new RunTheShooter());
 		//drivetrain
-		highGear = new JoystickButton(driverPad, 6);
+		highGear = new JoystickButton(driverPad, 5);
 		highGear.whenPressed(new ShiftHigh());
-		lowGear = new JoystickButton(driverPad, 5);
-		lowGear.whenPressed(new ShiftLow());
+		highGear.whenReleased(new ShiftLow());
+		lowGear = new JoystickButton(driverPad, 6);
+	//	lowGear.whenPressed(new ShiftLow());
 		// winch
-		winchPull = new JoystickButton(driverPad, 1);
+		winchPull = new JoystickButton(operatorStick, 4);
 		winchPull.whileHeld(new WinchPull());
+		// winchPull.whileHeld( new WinchWithStick());
 		//collector
-		rollerOut = new JoystickButton(operatorStick, 4);
+		rollerOut = new JoystickButton(operatorStick, 5);
 		rollerOut.whileHeld( new CollectorEject());
-		rollerIn = new JoystickButton(operatorStick, 5);
+		rollerIn = new JoystickButton(operatorStick, 3);
 		rollerIn.whileHeld(new CollectorIntake());
 		//turntable
 		tableCW = new JoystickButton(operatorStick, 2);
@@ -59,6 +64,9 @@ public class OI {
 		winchTilt = new JoystickButton(operatorStick, 6);
 		winchTilt.whileHeld(new WinchTilt());
 		
+		// gear holder
+		gearHolderOut = new JoystickButton(operatorStick, 12);
+		gearHolderOut.whileHeld(new getGear());
 		
 		// shooter RPM setters
 		shooter2000 = new JoystickButton(operatorStick, 7);
